@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthContext } from "./context/AuthContext";
-import HealthFormDeclaration from "./pages/HealthFormDeclaration";
+import HealthFormDeclarationPage from "./pages/HealthFormDeclarationPage";
 import HealthFormList from "./pages/HeathFormList";
 import Login from "./pages/Login";
 
@@ -9,7 +9,7 @@ export const PUBLIC_ROUTES = [
   {
     key:'health-form-declaration',
     path: "/",
-    element: <HealthFormDeclaration />,
+    element: <HealthFormDeclarationPage />,
   },
   {
     key:'login',

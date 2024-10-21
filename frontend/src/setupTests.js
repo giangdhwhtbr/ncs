@@ -3,3 +3,35 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+jest.mock("./config", () => ({ apiUrl: "localhost" }));
+
+global.console = {
+  ...global.console,
+  error: jest.fn(),
+  warn: jest.fn(),
+}
+
+jest.mock('./context/AuthContext', () => ({
+  useAuthContext: jest.fn(),
+}));
+
+jest.mock('./helper/fetch', () => ({
+  handleFetch: jest.fn(),
+  handleFetchWithCredentials: jest.fn(),
+}));
+
+beforeAll(() => {
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // Deprecated
+      removeListener: jest.fn(), // Deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
+});

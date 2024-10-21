@@ -1,3 +1,4 @@
+import React from "react";
 import HealthFormDeclaration from "../components/HealthFormDeclaration";
 
 export default function HealthFormDeclarationPage() {

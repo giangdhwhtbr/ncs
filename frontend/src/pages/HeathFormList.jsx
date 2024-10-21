@@ -1,5 +1,5 @@
 import { Button, Checkbox, Input, Modal, Table, message } from "antd";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { handleFetchWithCredentials } from "../helper/fetch";
 import { debounce } from "../helper/utils";
 import HealthFormDeclaration from "../components/HealthFormDeclaration";
