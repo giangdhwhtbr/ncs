@@ -33,7 +33,10 @@ describe('Auth routes', () => {
       const res = await request(app).post('/api/v1/auth/register').send(newUser).expect(httpStatus.CREATED);
 
       expect(res.body.user).not.toHaveProperty('password');
-      expect(res.body.user).toEqual({
+      const _user = res.body.user;
+      delete _user.createdAt;
+      delete _user.updatedAt;
+      expect(_user).toEqual({
         id: expect.anything(),
         name: newUser.name,
         email: newUser.email,
@@ -92,7 +95,10 @@ describe('Auth routes', () => {
 
       const res = await request(app).post('/api/v1/auth/login').send(loginCredentials).expect(httpStatus.OK);
 
-      expect(res.body.user).toEqual({
+      const _user = res.body.user;
+      delete _user.createdAt;
+      delete _user.updatedAt;
+      expect(_user).toEqual({
         id: expect.anything(),
         name: userOne.name,
         email: userOne.email,

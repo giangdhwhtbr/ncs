@@ -3,6 +3,7 @@ services:
     build: 
       context: ./backend
       dockerfile: Dockerfile
+    container_name: ncs_backend
     restart: always
     ports:
       - 3000:3000
@@ -18,6 +19,7 @@ services:
       dockerfile: Dockerfile
       args:
         VITE_REACT_APP_API_URL: http://localhost:3000
+    container_name: ncs_frontend
     restart: always
     ports:
       - 8080:80

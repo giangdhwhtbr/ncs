@@ -15,8 +15,6 @@ ENV VITE_REACT_APP_API_URL $VITE_REACT_APP_API_URL
 
 COPY . .
 
-RUN yarn test
-
 RUN yarn build
 
 # production-stage

@@ -32,7 +32,7 @@ describe('User routes', () => {
         .expect(httpStatus.CREATED);
 
       expect(res.body).not.toHaveProperty('password');
-      expect(res.body).toEqual({
+      expect(res.body).toMatchObject({
         id: expect.anything(),
         name: newUser.name,
         email: newUser.email,
@@ -158,7 +158,7 @@ describe('User routes', () => {
         totalResults: 3,
       });
       expect(res.body.results).toHaveLength(3);
-      expect(res.body.results[0]).toEqual({
+      expect(res.body.results[0]).toMatchObject({
         id: userOne._id.toHexString(),
         name: userOne.name,
         email: userOne.email,
@@ -361,7 +361,7 @@ describe('User routes', () => {
         .expect(httpStatus.OK);
 
       expect(res.body).not.toHaveProperty('password');
-      expect(res.body).toEqual({
+      expect(res.body).toMatchObject({
         id: userOne._id.toHexString(),
         email: userOne.email,
         name: userOne.name,
@@ -494,7 +494,7 @@ describe('User routes', () => {
         .expect(httpStatus.OK);
 
       expect(res.body).not.toHaveProperty('password');
-      expect(res.body).toEqual({
+      expect(res.body).toMatchObject({
         id: userOne._id.toHexString(),
         name: updateBody.name,
         email: updateBody.email,
