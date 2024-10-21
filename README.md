@@ -6,6 +6,20 @@
 2. Each user can declare health information 1 time per day
 3. Only admin can login to the website and view the list of declared health information.
 
+## Notes
+
+Backend was created using the expressjs boiler plate: https://github.com/hagopj13/node-express-boilerplate
+
+This is a quick start project with several existed apis support for authentication. Because the requirement is just building features for Health Declaration Form, so that please look at my code at:
+
+backend/src/routes/v1/health_form.route.js
+backend/src/controllers/health_form.controller.js
+backend/src/services/health_form.service.js
+backend/src/models/health_form.model.js
+backend/tests/integration/health_forms.test.js
+
+Because I don't have a host to deployed code online, so please try to run it on your local environment.
+
 ## Quick Start
 
 ### Docker environment
@@ -46,6 +60,11 @@ Application up and running at: http://localhost:8080
 cd backend
 yarn install
 
+// Create .env file
+cp .env.example .env
+
+// Replace MONGODB_URL=mongodb://admin:admin@localhost:27017/ncs?authSource=admin&retryWrites=true
+
 // test all test cases
 yarn test
 
@@ -78,4 +97,14 @@ yarn build
 
 // run application
 yarn preview
+```
+
+Application up and running at: http://localhost:4173
+
+
+In order to login, please use the credential below, which is configured in .env file
+
+```
+ADMIN_EMAIL=admin@localhost.dev
+ADMIN_PASSWORD=Admin@123
 ```
