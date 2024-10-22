@@ -18,9 +18,10 @@ backend/src/services/health_form.service.js
 backend/src/models/health_form.model.js
 backend/tests/integration/health_forms.test.js
 
-Because I don't have a host to deployed code online, so please try to run it on your local environment.
 
 ## Quick Start
+
+Live Site http://18.135.5.111/
 
 ### Docker environment
 
