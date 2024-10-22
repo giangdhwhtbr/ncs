@@ -1,13 +1,11 @@
 import { DownOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Flex, Layout, Space } from "antd";
-import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from "../context/AuthContext";
 
 export default function AppLayout({ children }) {
   const { user, handleSignOut } = useAuthContext();
-
-
 
   const items = [
     {
@@ -24,7 +22,7 @@ export default function AppLayout({ children }) {
     <Flex gap="middle" wrap>
       <Layout className="min-h-[100vh]">
         <Layout.Header className="bg-slate-200 flex justify-between items-center">
-          <Link to={'/'} className="md:text-lg sm:text-base">Covid19 Health Declaration System</Link>
+          <Link to={user? '/main' : '/'} className="md:text-lg sm:text-base">Covid19 Health Declaration System</Link>
           <div>
             {user ? (
               <Dropdown
@@ -50,3 +48,8 @@ export default function AppLayout({ children }) {
     </Flex>
   );
 }
+
+
+AppLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};

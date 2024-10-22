@@ -1,9 +1,9 @@
-import React from "react";
 // import "antd/dist/reset.css";
+import React from 'react';
 import './index.css';
 import { StyleProvider } from '@ant-design/cssinjs';
 import { BrowserRouter } from "react-router-dom";
-import ApplicationRouter from "./Router";
+import ApplicationRouter from "./AplicationRouter";
 import AuthContextProvider from "./context/AuthContext";
 import AppLayout from "./components/AppLayout";
 

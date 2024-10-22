@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import HealthFormList from "./HeathFormList";
 const { handleFetchWithCredentials } = require("../helper/fetch");

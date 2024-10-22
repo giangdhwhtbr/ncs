@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { PUBLIC_ROUTES } from "../Router";
+import { PUBLIC_ROUTES } from "../routes";
 import { Spin } from "antd";
 
 const AuthContext = createContext();

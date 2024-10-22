@@ -1,6 +1,6 @@
-import React from "react";
 import { Button, Checkbox, Form, Input, InputNumber, message } from "antd";
 import { handleFetch } from "../helper/fetch";
+import PropTypes from "prop-types";
 
 
 export default function HealthFormDeclaration({ onSuccess }) {
@@ -26,7 +26,7 @@ export default function HealthFormDeclaration({ onSuccess }) {
       method: "POST",
       body: JSON.stringify(values),
     })
-      .then((data) => {
+      .then(() => {
         form.resetFields();
         message.success("Health Declaration Form submitted successfully!");
         onSuccess?.();
@@ -164,3 +164,8 @@ export default function HealthFormDeclaration({ onSuccess }) {
     </div>
   );
 }
+
+
+HealthFormDeclaration.propTypes = {
+  onSuccess: PropTypes.func,
+};

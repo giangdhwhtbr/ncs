@@ -1,6 +1,11 @@
 {
   "presets": [
     ["@babel/preset-env", { "targets": { "node": "current" } }],
-    "@babel/preset-react" // Add this line to support JSX
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic" // Enables the new JSX transform
+      }
+    ] // Add this line to support JSX
   ]
 }

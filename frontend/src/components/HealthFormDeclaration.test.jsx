@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import HealthFormDeclaration from "./HealthFormDeclaration";
 import { handleFetch } from "../helper/fetch";
