@@ -67,6 +67,16 @@ jobs:
     - name: Deploy to EC2 and Restart Services
       run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} << 'EOF'
+            # Select correct nvm version
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+            nvm use 20
+            node -v
+            yarn -v
+            pm2 -v
+
             # Backend Deployment
             cd ${{ secrets.DEPLOY_TARGET }}
             git pull origin master
