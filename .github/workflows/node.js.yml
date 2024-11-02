@@ -10,7 +10,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -21,11 +21,21 @@ jobs:
       with:
         node-version: '20'
 
+    - name: Set Backend Environment Variables
+      run: |
+        echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> $GITHUB_ENV
+        echo "NODE_ENV=test" >> $GITHUB_ENV
+
     - name: Test backend
       working-directory: ./backend
       run: |
         yarn install
         yarn test
+
+    - name: Set Frontend Environment Variables
+      run: |
+        echo "VITE_REACT_APP_API_URL=http://${{ secrets.DEPLOY_HOST }}/api/v1" >> $GITHUB_ENV
+        echo "NODE_ENV=production" >> $GITHUB_ENV
 
     - name: Test frontend
       working-directory: ./frontend
@@ -34,7 +44,7 @@ jobs:
         yarn test
 
     - name: Build frontend
-      working-directory: ./frontend 
+      working-directory: ./frontend
       run: |
         yarn build
 
@@ -43,14 +53,10 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-    - name: Set Environment Variables
-      run: |
-        echo "VITE_REACT_APP_API_URL=http://18.135.5.111/api/v1" >> $GITHUB_ENV
-
     - name: Copy frontend build to EC2
       run: |
           scp -o StrictHostKeyChecking=no -r ./frontend/build ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }}:/tmp/frontend-build
-      
+
     - name: Deploy to EC2 and Restart Services
       run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOST }} << 'EOF'
@@ -60,7 +66,7 @@ jobs:
             cd ./backend
             yarn install
             pm2 restart app
-            
+
             # Frontend Deployment
             sudo rm -rf /usr/share/nginx/html/*
             sudo cp -r /tmp/frontend-build/* /usr/share/nginx/html
