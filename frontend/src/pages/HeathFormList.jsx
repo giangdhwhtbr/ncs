@@ -161,6 +161,7 @@ export default function HealthFormList() {
         open={visible}
         width={700}
         onClose={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
         footer={false}
       >
         <HealthFormDeclaration onSuccess={handleRefresh} />
