@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "test": "npx jest --no-cache --logHeapUsage  --maxWorkers=2 --detectOpenHandles --forceExit",
+    "test": "jest --no-cache --logHeapUsage  --maxWorkers=2 --detectOpenHandles --forceExit",
     "preview": "vite preview"
   },
   "dependencies": {
