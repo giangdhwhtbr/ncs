@@ -116,6 +116,12 @@ export default function HealthFormList() {
       key: "contactWithCovidPatient",
       render: (val) => <Checkbox checked={val} disabled />,
     },
+    {
+      title: "Created At",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (val) => new Date(val).toLocaleString(),
+    },
   ];
 
   return (
