@@ -8,8 +8,10 @@ export default function Login() {
   const [form] = Form.useForm();
   const [error, setError] = useState(null);
   const initialValues = {
-    email: "admin@localhost.dev",
-    password: "Admin@123",
+    // email: "admin@localhost.dev",
+    // password: "Admin@123",
+    email: "",
+    password: "",
   };
   const handleSubmit = (values) => {
     handleFetch("/auth/login", {
@@ -22,7 +24,7 @@ export default function Login() {
         form.resetFields();
       })
       .catch((error) => {
-        console.error(error); 
+        console.error(error);
         setError(error.message);
       });
   };
