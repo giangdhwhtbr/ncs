@@ -19,7 +19,7 @@ describe('Login Component', () => {
 
   test('renders login form correctly', () => {
     render(<Login />);
-    
+
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
   });
@@ -54,6 +54,13 @@ describe('Login Component', () => {
     handleFetch.mockResolvedValueOnce(mockResponse);
 
     render(<Login />);
+
+    fireEvent.input(screen.getByLabelText(/email/i), {
+      target: { value: 'admin@localhost.dev' },
+    });
+    fireEvent.input(screen.getByLabelText(/password/i), {
+      target: { value: 'Admin@123' },
+    });
 
     fireEvent.submit(screen.getByRole('button', { name: /submit/i }));
 
