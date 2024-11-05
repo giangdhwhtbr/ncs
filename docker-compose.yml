@@ -1,6 +1,6 @@
 services:
   backend:
-    build: 
+    build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: ncs_backend
@@ -12,13 +12,13 @@ services:
     depends_on:
       - mongodb
     command: yarn start
-  
+
   frontend:
-    build: 
+    build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        VITE_REACT_APP_API_URL: http://localhost:3000
+        VITE_REACT_APP_API_URL: http://localhost:3000/api/v1
     container_name: ncs_frontend
     restart: always
     ports:

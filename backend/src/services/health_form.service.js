@@ -10,7 +10,14 @@ const ApiError = require('../utils/ApiError');
  */
 const createHealthForm = async (healthFormBody) => {
   if (await HealthForm.hasFormDeclaredInLast24Hours(healthFormBody.name)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'You have already submitted a health declaration form in the last 24 hours');
+    await HealthForm.findOneAndUpdate({
+      name: healthFormBody.name,
+      createdAt: { $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) }
+    }, healthFormBody).exec()
+    return {
+      success: true
+    }
+    // throw new ApiError(httpStatus.BAD_REQUEST, 'You have already submitted a health declaration form in the last 24 hours');
   }
   return HealthForm.create(healthFormBody);
 };

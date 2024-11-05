@@ -55,10 +55,16 @@ export default function HealthFormDeclaration({ onSuccess }) {
           label="Temperature"
           name="temperature"
           rules={[
-            { required: true, message: "Please input your temperature!" },
+            { required: true, message: "Please input your temperature!", validator() {
+              const value = form.getFieldValue('temperature')
+              const partials = value.toString().split('.')
+              if (partials.length == 2&& partials[1].length > 1) {
+                form.setFields([{ 'name': 'temperature', errors: ['Only accept upto 2 decimal numbers']}])
+              }
+            } },
           ]}
         >
-          <InputNumber min={36} max={42} />
+          <InputNumber min={36} max={42}  />
         </Form.Item>
         <strong className="my-5">
           Do you have any of the following symptoms now or within the last 14
